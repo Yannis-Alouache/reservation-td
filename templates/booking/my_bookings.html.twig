@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Mes réservations</h1>
+    
+    {% for booking in bookings %}
+        <div class="booking-card">
+            <h3>{{ booking.service.name }}</h3>
+            <p>Date : {{ booking.startTime|date('d/m/Y H:i') }}</p>
+            <p>Prix : {{ booking.service.price }}€</p>
+            
+            <form method="post" action="{{ path('app_booking_cancel', {'id': booking.id}) }}">
+                <input type="hidden" name="_token" value="{{ csrf_token('cancel' ~ booking.id) }}">
+                <button type="submit" class="btn btn-danger">Annuler</button>
+            </form>
+        </div>
+    {% else %}
+        <p>Vous n'avez aucune réservation à venir.</p>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Vos réservations</h1>
+        
+        <div class="row">
+            {% for booking in bookings %}
+                <div class="col-md-4 pt-2">
+                    <div class="card p-4 mb-2">
+                        <h3>{{ booking.service.name }}</h3>
+                        <p>Date: {{ booking.startTime|date('d/m/Y H:i') }}</p>
+                        
+                        <form action="{{ path('app_booking_cancel', {id: booking.id, email: email}) }}" method="post">
+                        <button type="submit" class="btn btn-danger w-100">Annuler</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        {% if bookings is empty %}
+            <div class="alert alert-info" role="alert">
+                Aucune réservation trouvée pour cet email.
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

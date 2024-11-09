@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="hero-banner text-white text-center d-flex align-items-center" style="background-image: url(https://res.cloudinary.com/planity/image/upload/f_auto,q_auto/v1701361557/portail/illustrations/HOMEPAGE/MAIN_2023/FR/1080-1440/2.jpg); background-size: cover; background-position: center; height: 600px;">
+        <div class="container">
+            <h1 class="display-4">Vos services du quotidien à portée de main !</h1>
+            <p class="lead">Découvrez nos services et réservez en quelques clics</p>
+        </div>
+    </div>
+
+
+    <div class="container my-5">
+        <h2>Nos services</h2>
+        
+        <div class="row">
+            {% for service in services %}
+                <div class="col-md-4 pt-2">
+                    <div class="card shadow-sm p-4">
+                        <h3>{{ service.name }}</h3>
+                        <p>Prix : {{ service.price }}€</p>
+                        <p>Durée : {{ service.duration }} minutes</p>
+                        <a href="{{ path('app_booking_step1') }}" class="btn btn-primary">Réserver</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

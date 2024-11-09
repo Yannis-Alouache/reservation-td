@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réservation - Étape 2{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="progress mb-4">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%">Étape 2 / 2</div>
+    </div>
+
+    <h1 class="mb-4 text-center">Finalisez votre réservation</h1>
+
+    <div class="card shadow-sm p-2 mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Récapitulatif</h5>
+            <p><strong>Service :</strong> {{ booking.service.name }}</p>
+            <p><strong>Date :</strong> {{ booking.startTime|date('d/m/Y H:i') }}</p>
+        </div>
+    </div>
+
+    <div class="card shadow-sm p-4">
+        {{ form_start(form) }}
+        
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="mb-3">
+            {{ form_row(form.userEmail, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Confirmer la réservation</button>
+        
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

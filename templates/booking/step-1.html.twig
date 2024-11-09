@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="progress mb-4">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 50%">Étape 1 / 2</div>
+    </div>
+
+    <h1 class="mb-4 text-center">Choisissez votre service et l'horaire</h1>
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="card shadow-sm p-4">
+        {{ form_start(form) }}
+        
+        <div class="mb-3">
+            {{ form_row(form.service, {'attr': {'class': 'form-select'}}) }}
+        </div>
+        
+        <div class="mb-3">
+            {{ form_row(form.startTime, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Suivant</button>
+        
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

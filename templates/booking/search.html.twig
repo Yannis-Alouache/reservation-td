@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Consulter vos réservations</h1>
+        
+        <form method="get" action="{{ path('app_booking_manage') }}" class="pt-2">
+            <div class="form-group pb-2">
+                <label for="email">Votre email</label>
+                <input type="email" name="email" id="email" required class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Rechercher</button>
+        </form>
+    </div>
+{% endblock %}
